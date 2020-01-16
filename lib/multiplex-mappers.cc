@@ -265,10 +265,10 @@ public:
 
   void MapSinglePanel(int x, int y, int *matrix_x, int *matrix_y) const {
     if ((y < 4) || (y >= 8 && y < 12)) {
-        *matrix_y = y + 4;
+        *matrix_y = y;// + 4;
         *matrix_x = x;
     } else {
-        *matrix_y = y - 4;
+        *matrix_y = y;// - 4;
         *matrix_x = x;
     }
   }
