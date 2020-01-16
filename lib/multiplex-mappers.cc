@@ -267,12 +267,15 @@ public:
     static const int tile_width = 8;
     static const int tile_height = 4;
 
-//    const int vert_block_is_odd = ((y / tile_height) % 2);
+    const int vert_block_is_odd = ((y / tile_height) % 2);
 
-//    const int odd_vblock_shitf = vert_block_is_odd * 8;
-
-    *matrix_x = x + (x / tile_width) * tile_width;// + odd_vblock_shitf;
-    *matrix_y = (y % tile_height) + tile_height * (y / (tile_height * 2));
+    if (vert_block_is_odd) {
+        *matrix_x = x + (x / tile_width) * tile_width + 8;
+        *matrix_y = (y % tile_height) + tile_height * (y / (tile_height * 2)) - 4;
+    } else {
+        *matrix_x = x + (x / tile_width) * tile_width;
+        *matrix_y = (y % tile_height) + tile_height * (y / (tile_height * 2)) + 4;
+    }
   }
 
 //  void MapSinglePanel(int x, int y, int *matrix_x, int *matrix_y) const {
