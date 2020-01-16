@@ -271,10 +271,10 @@ public:
 
     if (vert_block_is_odd) {
         *matrix_x = x + (x / tile_width) * tile_width + 8;
-        *matrix_y = (y % tile_height) + tile_height * (y / (tile_height * 2)) - 4;
+        *matrix_y = (y % tile_height) + tile_height * (y / (tile_height * 2)) + 4;
     } else {
         *matrix_x = x + (x / tile_width) * tile_width;
-        *matrix_y = (y % tile_height) + tile_height * (y / (tile_height * 2)) + 4;
+        *matrix_y = (y % tile_height) + tile_height * (y / (tile_height * 2)) - 4;
     }
   }
 
