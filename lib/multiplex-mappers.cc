@@ -261,7 +261,7 @@ public:
 
 class InversedEvenEights : public MultiplexMapperBase {
 public:
-  InversedEvenEights() : MultiplexMapperBase("InversedEvenEights", 2) {}
+  InversedEvenEights() : MultiplexMapperBase("InversedEvenEights", 1) {}
 
   void MapSinglePanel(int x, int y, int *matrix_x, int *matrix_y) const {
     if ((y < 4) || (y >= 8 && y < 12)) {
