@@ -261,17 +261,29 @@ public:
 
 class InversedEvenEights : public MultiplexMapperBase {
 public:
-  InversedEvenEights() : MultiplexMapperBase("InversedEvenEights", 1) {}
+  InversedEvenEights() : MultiplexMapperBase("InversedEvenEights", 2) {}
 
   void MapSinglePanel(int x, int y, int *matrix_x, int *matrix_y) const {
-    if ((y < 4) || (y >= 8 && y < 12)) {
-        *matrix_y = y;// + 4;
-        *matrix_x = x;
-    } else {
-        *matrix_y = y;// - 4;
-        *matrix_x = x;
-    }
+      static const int tile_width = 8;
+      static const int tile_height = 4;
+      
+      const int vert_block_is_odd = ((y / tile_height) % 2);
+      
+      const int odd_vblock_shift = vert_block_is_odd * 8;
+      
+      *matrix_x = x + (x / tile_width) * tile_width + odd_vblock_shift;
+      *matrix_y = (y % tile_height) + tile_height * (y / (tile_height * 2));
   }
+
+//  void MapSinglePanel(int x, int y, int *matrix_x, int *matrix_y) const {
+//    if ((y < 4) || (y >= 8 && y < 12)) {
+//        *matrix_y = y;// + 4;
+//        *matrix_x = x;
+//    } else {
+//        *matrix_y = y;// - 4;
+//        *matrix_x = x;
+//    }
+//  }
 };
 
 /*
