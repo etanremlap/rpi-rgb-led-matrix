@@ -259,6 +259,21 @@ public:
   }
 };
 
+class InversedEvenEights : public MultiplexMapperBase {
+public:
+  InversedEvenEights() : MultiplexMapperBase("InversedEvenEights", 1) {}
+
+  void MapSinglePanel(int x, int y, int *matrix_x, int *matrix_y) const {
+    if ((y < 4) || (y >= 8 && y < 12)) {
+        *matrix_y = y + 4;
+        *matrix_x = x;
+    } else {
+        *matrix_y = y - 4;
+        *matrix_x = x;
+    }
+  }
+};
+
 /*
  * Here is where the registration happens.
  * If you add an instance of the mapper here, it will automatically be
@@ -278,6 +293,7 @@ static MuxMapperList *CreateMultiplexMapperList() {
   result->push_back(new ZStripeMultiplexMapper("ZStripeUneven", 8, 0));
   result->push_back(new P10MapperZ());
   result->push_back(new QiangLiQ8());
+  result->push_back(new InversedEvenEights());
   return result;
 }
 
