@@ -259,9 +259,9 @@ public:
   }
 };
 
-class InversedEvenEights : public MultiplexMapperBase {
+class InversedEvenEightsZStripe : public MultiplexMapperBase {
 public:
-  InversedEvenEights() : MultiplexMapperBase("InversedEvenEights", 2) {}
+  InversedEvenEightsZStripe() : MultiplexMapperBase("InversedEvenEightsZStripe", 2) {}
   
   void MapSinglePanel(int x, int y, int *matrix_x, int *matrix_y) const {
     static const int tile_width = 8;
@@ -299,7 +299,7 @@ static MuxMapperList *CreateMultiplexMapperList() {
   result->push_back(new ZStripeMultiplexMapper("ZStripeUneven", 8, 0));
   result->push_back(new P10MapperZ());
   result->push_back(new QiangLiQ8());
-  result->push_back(new InversedEvenEights());
+  result->push_back(new InversedEvenEightsZStripe());
   return result;
 }
 
